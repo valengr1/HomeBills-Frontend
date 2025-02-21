@@ -1,0 +1,28 @@
+.h1 {
+  font-family: var(--fuente-titulo);
+  text-align: center;
+}
+
+.grillaMeses {
+  font-family: var(--fuente-texto);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1rem;
+}
+
+.tarjetaMes {
+  background-color: var(--color-tarjeta);
+  padding: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  width: 200px;
+  cursor: pointer;
+}
+
+.tarjetaMes:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}

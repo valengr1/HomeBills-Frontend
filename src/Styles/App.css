@@ -1,0 +1,17 @@
+:root {
+  --fuente-titulo: "Roboto", sans-serif;
+  --fuente-texto: "Open Sans", sans-serif;
+  --color-fondo: #f3f3f3;
+  --color-tarjeta: #fff;
+
+  --color-texto: #333;
+  --color-borde: #ddd;
+  --color-sombra: rgba(0, 0, 0, 0.1);
+  --color-primario: #007bff;
+  --color-secundario: #6c757d;
+  --color-terciario: #dc3545;
+  --color-blanco: #fff;
+  --color-negro: #000;
+
+  background-color: var(--color-fondo);
+}

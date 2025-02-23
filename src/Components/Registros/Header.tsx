@@ -5,7 +5,11 @@ function Header() {
   const mes = location.pathname.split("/")[2];
 
   return (
-    <div>{mes}</div>
+    <>
+      <div>{mes}</div>
+      <p>Balance: $2000</p>
+    </>
+
   )
 }
 

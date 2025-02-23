@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 
 interface Mes {
+  idaño_mes: number;
   idmes: number;
   descripcion: string;
 }

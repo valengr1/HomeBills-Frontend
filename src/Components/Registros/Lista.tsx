@@ -4,6 +4,7 @@ function Lista() {
   const { registros, loading, error } = useLista()
   if (loading) return <p>Cargando registros...</p>
   if (error) return <p>Error: {error}</p>
+  if (registros.length === 0) return <p>No hay registros</p>
 
   return (
     // Lista de registros

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 
 const useLista = () => {
   interface Registro {
@@ -13,11 +14,13 @@ const useLista = () => {
   const [registros, setRegistros] = useState<Registro[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
+  const location = useLocation();
+  const idaño_mes = location.pathname.split("/")[2];
 
   useEffect(() => {
     const getRegistros = async () => {
       try {
-        const response = await fetch("http://localhost:3000/registros")
+        const response = await fetch("http://localhost:3000/registros/" + idaño_mes);
         if (!response.ok) {
           throw new Error("Error al obtener los registros")
         }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const useLista = () => {
   interface Registro {
@@ -11,6 +11,7 @@ const useLista = () => {
     tiporegistro: string
   }
 
+  const navigate = useNavigate();
   const [registros, setRegistros] = useState<Registro[]>([])
   const [loading, setLoading] = useState<boolean>(true)
   const [error, setError] = useState<string | null>(null)
@@ -20,7 +21,16 @@ const useLista = () => {
   useEffect(() => {
     const getRegistros = async () => {
       try {
-        const response = await fetch("http://localhost:3000/registros/" + idaño_mes);
+        const response = await fetch("http://localhost:3000/registros/" + idaño_mes, {
+          method: "GET",
+          credentials: "include", // ✅ Necesario para enviar la cookie de sesión
+        });
+
+        if (response.status === 401) {
+          alert("Tu sesión ha expirado. Inicia sesión nuevamente.");
+          navigate("/");
+        }
+
         if (!response.ok) {
           throw new Error("Error al obtener los registros")
         }

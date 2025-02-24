@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Mes {
   idaño_mes: number;
@@ -7,6 +8,8 @@ interface Mes {
 }
 
 const useMeses = () => {
+
+  const navigate = useNavigate();
   const [meses, setMeses] = useState<Mes[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
@@ -18,6 +21,12 @@ const useMeses = () => {
           method: "GET",
           credentials: "include", // ✅ Necesario para enviar la cookie de sesión
         });
+
+        if (response.status === 401) {
+          alert("Tu sesión ha expirado. Inicia sesión nuevamente.");
+          navigate("/");
+        }
+
         if (!response.ok) {
           throw new Error("Error al obtener los meses");
         }

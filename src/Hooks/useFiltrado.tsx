@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
 
 const useFiltrado = () => {
   interface TipoRegistro {
@@ -11,7 +12,7 @@ const useFiltrado = () => {
     descripcion: string
   }
 
-
+  const navigate = useNavigate();
   const [tiposRegistros, setTiposRegistros] = useState<TipoRegistro[]>([])
   const [categorias, setCategorias] = useState<Categoria[]>([])
   const [loading, setLoading] = useState<boolean>(true)
@@ -20,10 +21,20 @@ const useFiltrado = () => {
   useEffect(() => {
     const getTipoRegistros = async () => {
       try {
-        const response = await fetch("http://localhost:3000/registros/tipos")
+        const response = await fetch("http://localhost:3000/registros/tipos", {
+          method: "GET",
+          credentials: "include", // ✅ Necesario para enviar la cookie de sesión
+        })
+
+        if (response.status === 401) {
+          alert("Tu sesión ha expirado. Inicia sesión nuevamente.");
+          navigate("/");
+        }
+
         if (!response.ok) {
           throw new Error("Error al obtener los tipos de registros")
         }
+
         const data = await response.json()
         setTiposRegistros(data)
       } catch (err) {
@@ -35,7 +46,14 @@ const useFiltrado = () => {
 
     const getCategorias = async () => {
       try {
-        const response = await fetch("http://localhost:3000/registros/categorias")
+        const response = await fetch("http://localhost:3000/registros/categorias", {
+          method: "GET",
+          credentials: "include", // ✅ Necesario para enviar la cookie de sesión
+        })
+        if (response.status === 401) {
+          alert("Tu sesión ha expirado. Inicia sesión nuevamente.");
+          navigate("/");
+        }
         if (!response.ok) {
           throw new Error("Error al obtener las categorias")
         }

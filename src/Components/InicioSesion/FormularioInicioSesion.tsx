@@ -15,7 +15,7 @@ function FormularioInicioSesion() {
 
   const verificarUsuarioDB = async (usuario: string, contraseña: string) => {
     try {
-      const response = await fetch("http://localhost:3000/usuarios/validar", {
+      const response = await fetch("http://localhost:3000/usuarios/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

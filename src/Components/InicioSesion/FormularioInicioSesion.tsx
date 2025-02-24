@@ -3,6 +3,9 @@ import { useNavigate } from "react-router-dom"
 function FormularioInicioSesion() {
   const navigate = useNavigate();
 
+  // Si se recarga el componente, entonces que se cierre sesión
+
+
   const validarUsuario = (e: React.FormEvent) => {
     e.preventDefault()
     const usuario = (e.target as HTMLFormElement).usuario.value
@@ -17,6 +20,7 @@ function FormularioInicioSesion() {
         headers: {
           "Content-Type": "application/json",
         },
+        credentials: "include",
         body: JSON.stringify({ usuario, contraseña }),
       });
 
@@ -41,10 +45,6 @@ function FormularioInicioSesion() {
     }
   };
 
-
-
-
-
   return (
     <div>
       <h1>Iniciar Sesión</h1>
@@ -52,7 +52,7 @@ function FormularioInicioSesion() {
         <label htmlFor="usuario">Usuario</label>
         <input type="usuario" id="usuario" name="usuario" />
         <label htmlFor="contraseña">Contraseña</label>
-        <input type="contraseña" id="contraseña" name="contraseña" />
+        <input type="password" id="contraseña" name="contraseña" />
         <button type="submit">Iniciar Sesión</button>
       </form>
     </div>

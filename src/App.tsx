@@ -10,7 +10,7 @@ function App() {
       <Routes>
         <Route path="/" element={<InicioSesion />} />
         <Route path="/meses" element={<Meses />} />
-        <Route path="/registros/:mes" element={<Registros />} />
+        <Route path="/registros/:id/:mes" element={<Registros />} />
       </Routes>
     </BrowserRouter>
   )

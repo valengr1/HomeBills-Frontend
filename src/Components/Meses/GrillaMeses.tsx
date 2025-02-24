@@ -9,8 +9,8 @@ function GrillaMeses() {
   if (loading) return <p>Cargando meses...</p>;
   if (error) return <p>Error: {error}</p>;
 
-  const mostrarRegistros = (mes: string) => {
-    navigate("/registros/" + mes);
+  const mostrarRegistros = (idaño_mes: number, nombre_mes: string) => {
+    navigate("/registros/" + idaño_mes + "/" + nombre_mes);
   }
 
   return (
@@ -18,7 +18,7 @@ function GrillaMeses() {
       <h1 className={styles.h1}>2025</h1>
       <div className={styles.grillaMeses}>
         {meses.map((mes) => (
-          <div onClick={() => { mostrarRegistros(mes.descripcion) }} className={styles.tarjetaMes} key={mes.idmes}>
+          <div onClick={() => { mostrarRegistros(mes.idaño_mes, mes.descripcion) }} className={styles.tarjetaMes} key={mes.idmes}>
             <p>{mes.descripcion}</p>
           </div>
         ))}
